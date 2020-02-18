@@ -96,7 +96,7 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                             padding: const EdgeInsets.only(
                                 top: 32.0, left: 18, right: 16),
                             child: Text(
-                              'Web Design\nCourse',
+                              'So Beautiful House',
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
@@ -120,25 +120,14 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                                     fontWeight: FontWeight.w200,
                                     fontSize: 22,
                                     letterSpacing: 0.27,
-                                    color: DesignCourseAppTheme.nearlyBlue,
+                                    color: DesignCourseAppTheme.orangeText,
                                   ),
                                 ),
                                 Container(
                                   child: Row(
                                     children: <Widget>[
-                                      Text(
-                                        '4.3',
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w200,
-                                          fontSize: 22,
-                                          letterSpacing: 0.27,
-                                          color: DesignCourseAppTheme.grey,
-                                        ),
-                                      ),
                                       Icon(
-                                        Icons.star,
-                                        color: DesignCourseAppTheme.nearlyBlue,
+                                        Icons.favorite_border,
                                         size: 24,
                                       ),
                                     ],
@@ -194,13 +183,13 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   Container(
-                                    width: _width/2 - 48,
+                                    width: _width/2 - 40,
                                     height: 48,
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: DesignCourseAppTheme.orange,
+                                        color: DesignCourseAppTheme.orangeText,
                                         borderRadius: const BorderRadius.all(
-                                          Radius.circular(16.0),
+                                          Radius.circular(4.0),
                                         ),
                                         border: Border.all(
                                             color: DesignCourseAppTheme.grey
@@ -224,23 +213,18 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                                   const SizedBox(
                                     width: 16,
                                   ),
-                                  Expanded(
+                                  Container(
+                                    width: _width/2 - 40,
+                                    height: 48,
                                     child: Container(
-                                      width: _width/2 - 48,
-                                      height: 48,
                                       decoration: BoxDecoration(
-                                        color: DesignCourseAppTheme.pink,
+                                        color: DesignCourseAppTheme.orangeText,
                                         borderRadius: const BorderRadius.all(
-                                          Radius.circular(16.0),
+                                          Radius.circular(4.0),
                                         ),
-                                        boxShadow: <BoxShadow>[
-                                          BoxShadow(
-                                              color: DesignCourseAppTheme
-                                                  .nearlyBlue
-                                                  .withOpacity(0.5),
-                                              offset: const Offset(1.1, 1.1),
-                                              blurRadius: 10.0),
-                                        ],
+                                        border: Border.all(
+                                            color: DesignCourseAppTheme.grey
+                                                .withOpacity(0.2)),
                                       ),
                                       child: Center(
                                         child: Text(
@@ -256,7 +240,7 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                                         ),
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -265,32 +249,6 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                             height: MediaQuery.of(context).padding.bottom,
                           )
                         ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              top: (MediaQuery.of(context).size.width / 1.2) - 24.0 - 35,
-              right: 35,
-              child: ScaleTransition(
-                alignment: Alignment.center,
-                scale: CurvedAnimation(
-                    parent: animationController, curve: Curves.fastOutSlowIn),
-                child: Card(
-                  color: DesignCourseAppTheme.nearlyBlue,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0)),
-                  elevation: 10.0,
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    child: Center(
-                      child: Icon(
-                        Icons.favorite,
-                        color: DesignCourseAppTheme.nearlyWhite,
-                        size: 30,
                       ),
                     ),
                   ),
@@ -330,12 +288,12 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
       child: Container(
         decoration: BoxDecoration(
           color: DesignCourseAppTheme.nearlyWhite,
-          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(2.0)),
           boxShadow: <BoxShadow>[
             BoxShadow(
                 color: DesignCourseAppTheme.grey.withOpacity(0.2),
-                offset: const Offset(1.1, 1.1),
-                blurRadius: 8.0),
+                offset: const Offset(0.1, 0.1),
+                blurRadius: 1.0),
           ],
         ),
         child: Padding(
@@ -352,7 +310,7 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                   fontWeight: FontWeight.w600,
                   fontSize: 14,
                   letterSpacing: 0.27,
-                  color: DesignCourseAppTheme.nearlyBlue,
+                  color: DesignCourseAppTheme.nearlyBlack,
                 ),
               ),
               Text(

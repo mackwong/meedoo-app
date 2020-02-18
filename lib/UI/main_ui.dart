@@ -226,7 +226,7 @@ class _MainUIState extends State<MainUI> {
       key: scaffoldKey,
       drawer: _drawer(),
       floatingActionButton: FloatingActionButton.extended(
-        elevation: 3,
+        elevation: 2,
         onPressed: () {},
         backgroundColor: DesignCourseAppTheme.orange,
         icon: Icon(Icons.add_circle),
@@ -240,7 +240,6 @@ class _MainUIState extends State<MainUI> {
           child: Column(
             children: <Widget>[
               clipShape(),
-              Divider(),
               expandList(),
               Divider(),
               Container(
@@ -481,8 +480,8 @@ class _MainUIState extends State<MainUI> {
         Container(
           margin: EdgeInsets.only(left: 40, right: 40, top: _height / 10),
           child: Material(
-            borderRadius: BorderRadius.circular(30.0),
-            elevation: 8,
+            borderRadius: BorderRadius.circular(5.0),
+            elevation: 2,
             child: Container(
               child: TextFormField(
                 cursorColor: DesignCourseAppTheme.orange,
