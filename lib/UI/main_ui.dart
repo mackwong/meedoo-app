@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_classifiedappclone/Constants/constants.dart';
 import 'package:flutter_classifiedappclone/Model/categoryModel.dart';
 import 'package:flutter_classifiedappclone/Model/productModel.dart';
 import 'package:flutter_classifiedappclone/UI/Widgets/custom_shape.dart';
@@ -376,6 +377,50 @@ class _MainUIState extends State<MainUI> {
             leading: Icon(Icons.payment),
             title: Text("Orders & Payments"),
           ),
+          ListTile(
+            leading: Icon(Icons.help),
+            title: Text("FeedBack"),
+          ),
+          ListTile(
+            leading: Icon(Icons.share),
+            title: Text("Rate the app"),
+          ),
+          ListTile(
+            leading: Icon(Icons.group),
+            title: Text("Invite Friend"),
+          ),
+          ListTile(
+            leading: Icon(Icons.info),
+            title: Text("About Us"),
+          ),
+          Divider(
+            height: 1,
+            color: Colors.grey,
+          ),
+          Column(
+            children: <Widget>[
+              ListTile(
+                title: Text(
+                  'Sign Out',
+                  style: TextStyle(
+                    fontFamily: 'WorkSans',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                trailing: Icon(
+                  Icons.power_settings_new,
+                  color: Colors.red,
+                ),
+                onTap: () {},
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).padding.bottom,
+              )
+            ],
+          ),
         ],
       ),
     );
@@ -559,7 +604,7 @@ class _MainUIState extends State<MainUI> {
               children: <Widget>[
                 GestureDetector(
                   onTap: () {
-                    //Navigator.of(context).pushNamed(ELECTRONICS_ITEM_LIST);
+                    Navigator.of(context).pushNamed(HOUSE_SCREEN);
                     print('Routing to Electronics item list');
                   },
                   child: Image.asset(

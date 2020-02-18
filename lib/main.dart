@@ -3,10 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_classifiedappclone/Constants/constants.dart';
 import 'package:flutter_classifiedappclone/UI/Widgets/splash_screen.dart';
 import 'package:flutter_classifiedappclone/UI/main_ui.dart';
+import 'package:flutter_classifiedappclone/UI/hotel_booking/hotel_home_screen.dart';
 
 
-
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -17,13 +20,13 @@ class MyApp extends StatelessWidget {
     ]);
     return MaterialApp(
 
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Classified App Clone',
+      debugShowCheckedModeBanner: true,
+      title: 'MeeDo ',
       theme: ThemeData(primaryColor: Colors.orange[200]),
       routes: <String, WidgetBuilder>{
         MAIN_UI: (BuildContext context) => MainUI(),
         SPLASH_SCREEN: (BuildContext context) => AnimatedSplashScreen(),
-
+        HOUSE_SCREEN: (BuildContext context) => HotelHomeScreen(),
 
       },
       initialRoute: SPLASH_SCREEN,
