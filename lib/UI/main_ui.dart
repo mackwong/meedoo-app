@@ -228,9 +228,9 @@ class _MainUIState extends State<MainUI> {
       floatingActionButton: FloatingActionButton.extended(
         elevation: 3,
         onPressed: () {},
-        backgroundColor: Colors.orange[200],
-        icon: Icon(Icons.camera_alt),
-        label: Text("Post AD", textAlign: TextAlign.center,style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+        backgroundColor: DesignCourseAppTheme.orange,
+        icon: Icon(Icons.add_circle),
+        label: Text("Post", textAlign: TextAlign.center,style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Container(
@@ -240,26 +240,7 @@ class _MainUIState extends State<MainUI> {
           child: Column(
             children: <Widget>[
               clipShape(),
-              Container(
-                margin: EdgeInsets.only(left: 30, right: 30, top: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text('Shop for',
-                        style: TextStyle(
-                             fontSize: 16)),
-                    GestureDetector(
-                        onTap: _expand,
-                        child: Text(
-                          isExpanded ? "Show less" : "Show all",
-                          style: TextStyle(
-                              color: Colors.orange[200],
-                              ),
-                        )),
-                    //IconButton(icon: isExpanded? Icon(Icons.arrow_drop_up, color: Colors.orange[200],) : Icon(Icons.arrow_drop_down, color: Colors.orange[200],), onPressed: _expand)
-                  ],
-                ),
-              ),
+              Divider(),
               expandList(),
               Divider(),
               Container(
@@ -278,7 +259,7 @@ class _MainUIState extends State<MainUI> {
                         child: Text(
                           'Show all',
                           style: TextStyle(
-                              color: Colors.orange[300],
+                              color: DesignCourseAppTheme.orangeText,
                              ),
                         ))
                   ],
@@ -302,7 +283,7 @@ class _MainUIState extends State<MainUI> {
                         child: Text(
                           'Show all',
                           style: TextStyle(
-                              color: Colors.orange[300],
+                              color: DesignCourseAppTheme.orangeText,
                              ),
                         ))
                   ],
@@ -326,7 +307,7 @@ class _MainUIState extends State<MainUI> {
                         child: Text(
                           'Show all',
                           style: TextStyle(
-                              color: Colors.orange[300],
+                              color: DesignCourseAppTheme.orangeText,
                               ),
                         ))
                   ],
@@ -351,21 +332,21 @@ class _MainUIState extends State<MainUI> {
               padding: EdgeInsets.only(top: _height / 20),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.orange[200], Colors.pinkAccent],
+                  colors: [DesignCourseAppTheme.orange, DesignCourseAppTheme.pink],
                 ),
               ),
               child: ListTile(
                 leading: CircleAvatar(
-                  child: Icon(
-                    Icons.person,
-                    size: 40,
-                    color: Colors.black,
+                  child: Image.asset(
+                    'assets/images/car.png',
+                    height: _height / 12,
+                    width: _width / 12,
                   ),
                   radius: 30,
                   backgroundColor: Colors.white,
                 ),
-                title: Text("FlutterDevs"),
-                subtitle: Text("flutterDevs@aeologic.com",style: TextStyle(fontSize: 13),),
+                title: Text("Mack Wang"),
+                subtitle: Text("mail@mack.wang",style: TextStyle(fontSize: 13),),
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                   color: Colors.black,
@@ -378,23 +359,19 @@ class _MainUIState extends State<MainUI> {
             title: Text("Orders & Payments"),
           ),
           ListTile(
-            leading: Icon(Icons.help),
-            title: Text("FeedBack"),
+            leading: Icon(Icons.favorite_border),
+            title: Text("My Favorite"),
           ),
           ListTile(
             leading: Icon(Icons.share),
-            title: Text("Rate the app"),
+            title: Text("Share With Friends"),
           ),
           ListTile(
-            leading: Icon(Icons.group),
-            title: Text("Invite Friend"),
-          ),
-          ListTile(
-            leading: Icon(Icons.info),
-            title: Text("About Us"),
+            leading: Icon(Icons.help),
+            title: Text("FeedBack"),
           ),
           Divider(
-            height: 1,
+            height: 5,
             color: Colors.grey,
           ),
           Column(
@@ -464,10 +441,10 @@ class _MainUIState extends State<MainUI> {
           child: ClipPath(
             clipper: CustomShapeClipper(),
             child: Container(
-              height: _height / 3,
+              height: _height / 8,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.orange[200], Colors.pinkAccent],
+                  colors: [DesignCourseAppTheme.orange, DesignCourseAppTheme.pink],
                 ),
               ),
             ),
@@ -478,10 +455,10 @@ class _MainUIState extends State<MainUI> {
           child: ClipPath(
             clipper: CustomShapeClipper2(),
             child: Container(
-              height: _height / 3.5,
+              height: _height / 8.5,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.orange[200], Colors.pinkAccent],
+                  colors: [DesignCourseAppTheme.orange, DesignCourseAppTheme.pink],
                 ),
               ),
             ),
@@ -492,28 +469,28 @@ class _MainUIState extends State<MainUI> {
           child: ClipPath(
             clipper: CustomShapeClipper3(),
             child: Container(
-              height: _height / 3,
+              height: _height / 7,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.orange[200], Colors.pinkAccent],
+                  colors: [DesignCourseAppTheme.orange, DesignCourseAppTheme.pink],
                 ),
               ),
             ),
           ),
         ),
         Container(
-          margin: EdgeInsets.only(left: 40, right: 40, top: _height / 3.75),
+          margin: EdgeInsets.only(left: 40, right: 40, top: _height / 10),
           child: Material(
             borderRadius: BorderRadius.circular(30.0),
             elevation: 8,
             child: Container(
               child: TextFormField(
-                cursorColor: Colors.orange[200],
+                cursorColor: DesignCourseAppTheme.orange,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(10),
                   prefixIcon:
-                  Icon(Icons.search, color: Colors.orange[200], size: 30),
+                  Icon(Icons.search, color: DesignCourseAppTheme.orange, size: 30),
                   hintText: "What're you looking for?",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
@@ -544,45 +521,22 @@ class _MainUIState extends State<MainUI> {
                         )),
                   ),
                 ),
-                Flexible(
-                  child: Container(
-                    height: _height / 20,
-                    padding: EdgeInsets.only(left: 10,right: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(30),
+                Row(
+                  children: <Widget>[
+                    Opacity(
+                      opacity: 0.5,
+                      child: GestureDetector(
+                          onTap: (){},
+                          child: Icon(Icons.edit_location, color: Colors.black,size: _height/30,)),
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        GestureDetector(
-                          onTap: (){
-                            print('Editing location');
-                          },
-                          child: Icon(
-                            Icons.edit_location,
-                            color: Colors.white,
-                            size: _height/40,
-                          ),
-                        ),
-                        SizedBox(width: 10,),
-                        Flexible(
-                            child: Text('Noida',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: _height/50),
-                                // overflow: TextOverflow.fade,
-                                softWrap: false)),
-                      ],
+                    Opacity(
+                      opacity: 0.5,
+                      child: GestureDetector(
+                          onTap: (){},
+                          child: Icon(Icons.notifications, color: Colors.black,size: _height/30,)),
                     ),
-                  ),
+                  ],
                 ),
-                Opacity(
-                  opacity: 0.5,
-                  child: GestureDetector(
-                    onTap: (){},
-                      child: Icon(Icons.notifications, color: Colors.black,size: _height/30,)),
-                  ),
               ],
             )),
 
@@ -613,9 +567,6 @@ class _MainUIState extends State<MainUI> {
                     width: _width / 12,
                   ),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
                 Flexible(
                   child: Text(
                     "Electronics",
@@ -628,7 +579,7 @@ class _MainUIState extends State<MainUI> {
               children: <Widget>[
                 GestureDetector(
                     onTap: () {
-                      //Navigator.of(context).pushNamed(PROPERTIES_ITEM_LIST);
+                      Navigator.of(context).pushNamed(HOUSE_DETAIL);
                       print('Routing to Properties item list');
                     },
                     child: Image.asset(
@@ -636,9 +587,6 @@ class _MainUIState extends State<MainUI> {
                       height: _height / 12,
                       width: _width / 12,
                     )),
-                SizedBox(
-                  height: 5,
-                ),
                 Flexible(
                   child: Text(
                     "Properties",
@@ -659,9 +607,6 @@ class _MainUIState extends State<MainUI> {
                       height: _height / 12,
                       width: _width / 12,
                     )),
-                SizedBox(
-                  height: 5,
-                ),
                 Flexible(
                   child: Text(
                     "Jobs",
@@ -682,9 +627,6 @@ class _MainUIState extends State<MainUI> {
                       height: _height / 12,
                       width: _width / 12,
                     )),
-                SizedBox(
-                  height: 5,
-                ),
                 Flexible(
                   child: Text(
                     "Furniture",
@@ -705,9 +647,6 @@ class _MainUIState extends State<MainUI> {
                     height: _height / 12,
                     width: _width / 12,
                   ),
-                ),
-                SizedBox(
-                  height: 5,
                 ),
                 Flexible(
                   child: Text(
@@ -730,9 +669,6 @@ class _MainUIState extends State<MainUI> {
                     width: _width / 12,
                   ),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
                 Flexible(
                   child: Text(
                     "Bikes",
@@ -753,9 +689,6 @@ class _MainUIState extends State<MainUI> {
                       height: _height / 12,
                       width: _width / 12,
                     )),
-                SizedBox(
-                  height: 5,
-                ),
                 Flexible(
                   child: Text(
                     "Mobiles",
@@ -776,9 +709,6 @@ class _MainUIState extends State<MainUI> {
                     height: _height / 12,
                     width: _width / 12,
                   ),
-                ),
-                SizedBox(
-                  height: 5,
                 ),
                 Flexible(
                   child: Text(
@@ -808,9 +738,6 @@ class _MainUIState extends State<MainUI> {
                     width: _width / 12,
                   ),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
                 Flexible(
                   child: Text(
                     "Electronics",
@@ -831,9 +758,6 @@ class _MainUIState extends State<MainUI> {
                       height: _height / 12,
                       width: _width / 12,
                     )),
-                SizedBox(
-                  height: 5,
-                ),
                 Flexible(
                   child: Text(
                     "Properties",
@@ -854,9 +778,6 @@ class _MainUIState extends State<MainUI> {
                       height: _height / 12,
                       width: _width / 12,
                     )),
-                SizedBox(
-                  height: 5,
-                ),
                 Flexible(
                   child: Text(
                     "Jobs",
@@ -877,9 +798,6 @@ class _MainUIState extends State<MainUI> {
                       height: _height / 12,
                       width: _width / 12,
                     )),
-                SizedBox(
-                  height: 5,
-                ),
                 Flexible(
                   child: Text(
                     "Furniture",
@@ -900,9 +818,6 @@ class _MainUIState extends State<MainUI> {
                     height: _height / 12,
                     width: _width / 12,
                   ),
-                ),
-                SizedBox(
-                  height: 5,
                 ),
                 Flexible(
                   child: Text(
@@ -925,9 +840,6 @@ class _MainUIState extends State<MainUI> {
                     width: _width / 12,
                   ),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
                 Flexible(
                   child: Text(
                     "Bikes",
@@ -948,9 +860,6 @@ class _MainUIState extends State<MainUI> {
                       height: _height / 12,
                       width: _width / 12,
                     )),
-                SizedBox(
-                  height: 5,
-                ),
                 Flexible(
                   child: Text(
                     "Mobiles",
@@ -972,9 +881,6 @@ class _MainUIState extends State<MainUI> {
                     width: _width / 12,
                   ),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
                 Flexible(
                   child: Text(
                     "Pets",
@@ -995,9 +901,6 @@ class _MainUIState extends State<MainUI> {
                     height: _height / 12,
                     width: _width / 12,
                   ),
-                ),
-                SizedBox(
-                  height: 5,
                 ),
                 Flexible(
                   child: Text(

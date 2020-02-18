@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_classifiedappclone/Constants/constants.dart';
 
 class CustomAppBar extends StatelessWidget {
   String title;
@@ -15,7 +16,7 @@ class CustomAppBar extends StatelessWidget {
       padding: EdgeInsets.only(left: 10, top: 25),
       decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors:[Colors.orange[200], Colors.pinkAccent],
+            colors:[DesignCourseAppTheme.orange, DesignCourseAppTheme.pink],
           )
       ),
       child: Row(
