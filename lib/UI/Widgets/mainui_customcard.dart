@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_classifiedappclone/Constants/constants.dart';
+
 
 class CustomCard extends StatelessWidget {
   double _width;
@@ -24,7 +26,7 @@ class CustomCard extends StatelessWidget {
     return Card(
       elevation: 3,
       shape:
-      RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+      RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
       color: Colors.white,
       child: Container(
         padding: EdgeInsets.only(left: 10, top: 10, right: 5, bottom: 10),
@@ -135,7 +137,7 @@ class CustomCard extends StatelessWidget {
               width: _width/2.5,
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
-                color: Colors.orange[50],
+                color: DesignCourseAppTheme.orange,
                 borderRadius: BorderRadius.circular(10),
               ),
               padding: EdgeInsets.all(10),

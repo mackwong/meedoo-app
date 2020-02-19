@@ -544,7 +544,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Icon(Icons.arrow_back),
+                    child: Icon(Icons.arrow_back_ios),
                   ),
                 ),
               ),

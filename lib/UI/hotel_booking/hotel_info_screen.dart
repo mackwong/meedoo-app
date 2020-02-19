@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_classifiedappclone/Constants/constants.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class HouseInfoScreen extends StatefulWidget {
   @override
@@ -41,6 +42,19 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
     });
   }
 
+  buildSwiperPagination() {
+    return SwiperPagination(
+      alignment: Alignment.bottomCenter, // 位置 Alignment.bottomCenter 底部中间
+      margin: const EdgeInsets.fromLTRB(0, 0, 0, 50),
+      builder: DotSwiperPaginationBuilder(
+          space: 2,
+          size: 6,
+          activeSize: 12,
+          color: Colors.black54,
+          activeColor: Colors.yellow),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final double tempHeight = MediaQuery.of(context).size.height -
@@ -57,12 +71,18 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
               children: <Widget>[
                 AspectRatio(
                   aspectRatio: 1.2,
-                  child: Image.asset('assets/hotel/hotel_2.png'),
+                  child: Swiper(
+                    itemBuilder: (BuildContext context,int index){
+                      return new Image.asset("assets/hotel/hotel_2.png",fit: BoxFit.fill,);
+                    },
+                  itemCount: 3,
+                  pagination: buildSwiperPagination(),
+                ),
                 ),
               ],
             ),
             Positioned(
-              top: (_width / 1.2) - 24.0,
+              top: (_width / 1.2) - 25.0,
               bottom: 0,
               left: 0,
               right: 0,

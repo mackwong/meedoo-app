@@ -492,7 +492,7 @@ class _MainUIState extends State<MainUI> {
                   Icon(Icons.search, color: DesignCourseAppTheme.orange, size: 30),
                   hintText: "What're you looking for?",
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30.0),
+                      borderRadius: BorderRadius.circular(5.0),
                       borderSide: BorderSide.none),
                 ),
               ),

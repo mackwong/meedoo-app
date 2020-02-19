@@ -39,17 +39,17 @@ class HotelListView extends StatelessWidget {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                     boxShadow: <BoxShadow>[
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.6),
                         offset: const Offset(4, 4),
-                        blurRadius: 16,
+                        blurRadius: 2,
                       ),
                     ],
                   ),
                   child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                     child: Stack(
                       children: <Widget>[
                         Column(
@@ -194,7 +194,7 @@ class HotelListView extends StatelessWidget {
                             color: Colors.transparent,
                             child: InkWell(
                               borderRadius: const BorderRadius.all(
-                                Radius.circular(32.0),
+                                Radius.circular(4.0),
                               ),
                               onTap: () {},
                               child: Padding(
