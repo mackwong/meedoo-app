@@ -38,16 +38,6 @@ class HotelListView extends StatelessWidget {
                   callback();
                 },
                 child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.6),
-                        offset: const Offset(4, 4),
-                        blurRadius: 2,
-                      ),
-                    ],
-                  ),
                   child: ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                     child: Stack(
@@ -55,7 +45,7 @@ class HotelListView extends StatelessWidget {
                         Column(
                           children: <Widget>[
                             AspectRatio(
-                              aspectRatio: 2,
+                              aspectRatio: 5,
                               child: Image.asset(
                                 hotelData.imagePath,
                                 fit: BoxFit.cover,
