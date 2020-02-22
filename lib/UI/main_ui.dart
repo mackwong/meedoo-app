@@ -409,7 +409,6 @@ class _MainUIState extends State<MainUI> {
       child:  Container(
         margin: EdgeInsets.only(left: 50, right: 50),
         decoration: BoxDecoration(
-
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(30)
         ),
@@ -507,32 +506,28 @@ class _MainUIState extends State<MainUI> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Opacity(
-                  opacity: 0.5,
+                  opacity: 0.7,
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 5),
                     child: GestureDetector(
                         onTap: () {
                           scaffoldKey.currentState.openDrawer();
                         },
-                        child: Image.asset(
-                          'assets/images/menubutton.png',
-                          height: _height / 40,
-                        )),
+                        child: Icon(Icons.menu, color: Colors.black,)),
                   ),
                 ),
                 Row(
                   children: <Widget>[
                     Opacity(
-                      opacity: 0.5,
+                      opacity: 0.7,
                       child: GestureDetector(
                           onTap: (){},
-                          child: Icon(Icons.edit_location, color: Colors.black,size: _height/30,)),
-                    ),
-                    Opacity(
-                      opacity: 0.5,
-                      child: GestureDetector(
-                          onTap: (){},
-                          child: Icon(Icons.notifications, color: Colors.black,size: _height/30,)),
+                          child: Row(
+                            children: <Widget>[
+                              Text("Manila", textAlign: TextAlign.center,style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+                              Icon(Icons.arrow_drop_down, color: Colors.black,)
+                            ],
+                          ),
+                          ),
                     ),
                   ],
                 ),
