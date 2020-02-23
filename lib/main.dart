@@ -6,7 +6,6 @@ import 'package:flutter_classifiedappclone/UI/main_ui.dart';
 import 'package:flutter_classifiedappclone/UI/hotel_booking/hotel_home_screen.dart';
 import 'package:flutter_classifiedappclone/UI/hotel_booking/hotel_info_screen.dart';
 
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
@@ -20,7 +19,6 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
-
       debugShowCheckedModeBanner: true,
       title: 'MeeDo ',
       theme: ThemeData(primaryColor: DesignCourseAppTheme.orange),
@@ -29,7 +27,6 @@ class MyApp extends StatelessWidget {
         SPLASH_SCREEN: (BuildContext context) => AnimatedSplashScreen(),
         HOUSE_SCREEN: (BuildContext context) => HotelHomeScreen(),
         HOUSE_DETAIL: (BuildContext context) => HouseInfoScreen(),
-
       },
       initialRoute: SPLASH_SCREEN,
     );

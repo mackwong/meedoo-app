@@ -5,7 +5,8 @@ import 'package:flutter_classifiedappclone/Model/categoryModel.dart';
 import 'package:flutter_classifiedappclone/Model/productModel.dart';
 import 'package:flutter_classifiedappclone/UI/Widgets/custom_shape.dart';
 import 'package:flutter_classifiedappclone/UI/Widgets/mainui_customcard.dart';
-
+import 'package:flutter_classifiedappclone/UI/hotel_booking/hotel_list_view.dart';
+import 'package:flutter_classifiedappclone/UI/hotel_booking/model/hotel_list_data.dart';
 
 class MainUI extends StatefulWidget {
   @override
@@ -15,7 +16,6 @@ class MainUI extends StatefulWidget {
 class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
-
   bool isExpanded = false;
   List<Category> categoryItems;
   List<Product> trendingListItems;
@@ -24,6 +24,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
   TabController _controller;
   double _height;
   double _width;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -200,17 +201,6 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
           true),
     ];
     _controller = new TabController(length: 2, vsync: this);
-//    categoryItems = [
-//      Category("Electronics", "assets/images/gadget.png"),
-//      Category("Properties", "assets/images/house.png"),
-//      Category("Jobs", "assets/images/job.png"),
-//      Category("Furniture", "assets/images/sofa.png"),
-//      Category("Cars", "assets/images/car.png"),
-//      Category("Bikes", "assets/images/bike.png"),
-//      Category("Mobiles", "assets/images/smartphone.png"),
-//      Category("Pets", "assets/images/pet.png"),
-//      Category("Fashion", "assets/images/dress.png"),
-//    ];
   }
 
   void _expand() {
@@ -223,6 +213,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     _height = MediaQuery.of(context).size.height;
     _width = MediaQuery.of(context).size.width;
+    List<HotelListData> hotelList = HotelListData.hotelList;
     return Scaffold(
       bottomNavigationBar: _bottomNavBar(),
       key: scaffoldKey,
@@ -232,11 +223,14 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
         onPressed: () {},
         backgroundColor: DesignCourseAppTheme.orange,
         icon: Icon(Icons.add_circle),
-        label: Text("Post", textAlign: TextAlign.center,style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+        label: Text(
+          "Post",
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Container(
-        height: _height,
         width: _width,
         child: SingleChildScrollView(
           child: Column(
@@ -248,19 +242,17 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text("Trending",
-                        style: TextStyle(
-                            fontSize: 16)),
+                    Text("Trending", style: TextStyle(fontSize: 16)),
                     GestureDetector(
                         onTap: () {
-                         // Navigator.of(context).pushNamed(TRENDING_UI);
+                          // Navigator.of(context).pushNamed(TRENDING_UI);
                           print('Showing all');
                         },
                         child: Text(
                           'Show all',
                           style: TextStyle(
-                              color: DesignCourseAppTheme.orangeText,
-                             ),
+                            color: DesignCourseAppTheme.orangeText,
+                          ),
                         ))
                   ],
                 ),
@@ -284,23 +276,30 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                 ),
               ),
               Container(
-                height: 80.0,
+                height: 300.0,
                 child: new TabBarView(
                   controller: _controller,
                   children: <Widget>[
-                    new Card(
-                      child: new ListTile(
-                        leading: const Icon(Icons.home),
-                        title: new TextField(
-                          decoration: const InputDecoration(hintText: 'Search for address...'),
-                        ),
-                      ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: hotelList.length,
+                      padding: const EdgeInsets.only(top: 8),
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (BuildContext context, int index) {
+                        return HotelListView(
+                          callback: () {},
+                          hotelData: hotelList[index],
+                        );
+                      },
                     ),
                     new Card(
                       child: new ListTile(
                         leading: const Icon(Icons.location_on),
-                        title: new Text('Latitude: 48.09342\nLongitude: 11.23403'),
-                        trailing: new IconButton(icon: const Icon(Icons.my_location), onPressed: () {}),
+                        title:
+                            new Text('Latitude: 48.09342\nLongitude: 11.23403'),
+                        trailing: new IconButton(
+                            icon: const Icon(Icons.my_location),
+                            onPressed: () {}),
                       ),
                     ),
                   ],
@@ -324,7 +323,10 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
               padding: EdgeInsets.only(top: _height / 20),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [DesignCourseAppTheme.orange, DesignCourseAppTheme.pink],
+                  colors: [
+                    DesignCourseAppTheme.orange,
+                    DesignCourseAppTheme.pink
+                  ],
                 ),
               ),
               child: ListTile(
@@ -338,7 +340,10 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                   backgroundColor: Colors.white,
                 ),
                 title: Text("Mack Wang"),
-                subtitle: Text("mail@mack.wang",style: TextStyle(fontSize: 13),),
+                subtitle: Text(
+                  "mail@mack.wang",
+                  style: TextStyle(fontSize: 13),
+                ),
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                   color: Colors.black,
@@ -398,13 +403,12 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
   Widget _bottomNavBar() {
     return BottomAppBar(
       notchMargin: 4,
-      shape: AutomaticNotchedShape(RoundedRectangleBorder(),RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-      child:  Container(
+      shape: AutomaticNotchedShape(RoundedRectangleBorder(),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+      child: Container(
         margin: EdgeInsets.only(left: 50, right: 50),
         decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(30)
-        ),
+            shape: BoxShape.rectangle, borderRadius: BorderRadius.circular(30)),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -413,7 +417,6 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
               icon: Icon(Icons.home),
               onPressed: () {},
             ),
-
             IconButton(
               icon: Icon(Icons.message),
               onPressed: () {},
@@ -435,7 +438,10 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
               height: _height / 8,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [DesignCourseAppTheme.orange, DesignCourseAppTheme.pink],
+                  colors: [
+                    DesignCourseAppTheme.orange,
+                    DesignCourseAppTheme.pink
+                  ],
                 ),
               ),
             ),
@@ -449,7 +455,10 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
               height: _height / 8.5,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [DesignCourseAppTheme.orange, DesignCourseAppTheme.pink],
+                  colors: [
+                    DesignCourseAppTheme.orange,
+                    DesignCourseAppTheme.pink
+                  ],
                 ),
               ),
             ),
@@ -463,7 +472,10 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
               height: _height / 7,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [DesignCourseAppTheme.orange, DesignCourseAppTheme.pink],
+                  colors: [
+                    DesignCourseAppTheme.orange,
+                    DesignCourseAppTheme.pink
+                  ],
                 ),
               ),
             ),
@@ -480,8 +492,8 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(10),
-                  prefixIcon:
-                  Icon(Icons.search, color: DesignCourseAppTheme.orange, size: 30),
+                  prefixIcon: Icon(Icons.search,
+                      color: DesignCourseAppTheme.orange, size: 30),
                   hintText: "What're you looking for?",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -492,7 +504,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
           ),
         ),
         Container(
-          //color: Colors.blue,
+            //color: Colors.blue,
             margin: EdgeInsets.only(left: 20, right: 20, top: _height / 20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -505,7 +517,10 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                         onTap: () {
                           scaffoldKey.currentState.openDrawer();
                         },
-                        child: Icon(Icons.menu, color: Colors.black,)),
+                        child: Icon(
+                          Icons.menu,
+                          color: Colors.black,
+                        )),
                   ),
                 ),
                 Row(
@@ -513,21 +528,28 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                     Opacity(
                       opacity: 0.7,
                       child: GestureDetector(
-                          onTap: (){},
-                          child: Row(
-                            children: <Widget>[
-                              Text("Manila", textAlign: TextAlign.center,style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
-                              Icon(Icons.arrow_drop_down, color: Colors.black,)
-                            ],
-                          ),
-                          ),
+                        onTap: () {},
+                        child: Row(
+                          children: <Widget>[
+                            Text(
+                              "Manila",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.black,
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ],
             )),
-
-
       ],
     );
   }
@@ -557,7 +579,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                 Flexible(
                   child: Text(
                     "Electronics",
-                    style: TextStyle( fontSize: 13),
+                    style: TextStyle(fontSize: 13),
                   ),
                 ),
               ],
@@ -625,7 +647,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
             Column(
               children: <Widget>[
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     //Navigator.of(context).pushNamed(CARS_ITEM_LIST);
                     print('Routing to Cars item list');
                   },
@@ -638,7 +660,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                 Flexible(
                   child: Text(
                     "Cars",
-                    style: TextStyle( fontSize: 13),
+                    style: TextStyle(fontSize: 13),
                   ),
                 ),
               ],
@@ -646,7 +668,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
             Column(
               children: <Widget>[
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     //Navigator.of(context).pushNamed(BIKES_ITEM_LIST);
                     print('Routing to Bikes item list');
                   },
@@ -659,7 +681,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                 Flexible(
                   child: Text(
                     "Bikes",
-                    style: TextStyle( fontSize: 13),
+                    style: TextStyle(fontSize: 13),
                   ),
                 ),
               ],
@@ -679,7 +701,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                 Flexible(
                   child: Text(
                     "Mobiles",
-                    style: TextStyle( fontSize: 13),
+                    style: TextStyle(fontSize: 13),
                   ),
                 ),
               ],
@@ -687,7 +709,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
             Column(
               children: <Widget>[
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     //Navigator.of(context).pushNamed(PETS_ITEM_LIST);
                     print('Routing to Pets item list');
                   },
@@ -768,7 +790,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                 Flexible(
                   child: Text(
                     "Jobs",
-                    style: TextStyle( fontSize: 13),
+                    style: TextStyle(fontSize: 13),
                   ),
                 ),
               ],
@@ -796,7 +818,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
             Column(
               children: <Widget>[
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     //Navigator.of(context).pushNamed(CARS_ITEM_LIST);
                     print('Routing to Cars item list');
                   },
@@ -809,7 +831,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                 Flexible(
                   child: Text(
                     "Cars",
-                    style: TextStyle( fontSize: 13),
+                    style: TextStyle(fontSize: 13),
                   ),
                 ),
               ],
@@ -817,7 +839,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
             Column(
               children: <Widget>[
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     //Navigator.of(context).pushNamed(BIKES_ITEM_LIST);
                     print('Routing to Bikes item list');
                   },
@@ -830,7 +852,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                 Flexible(
                   child: Text(
                     "Bikes",
-                    style: TextStyle( fontSize: 13),
+                    style: TextStyle(fontSize: 13),
                   ),
                 ),
               ],
@@ -850,7 +872,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                 Flexible(
                   child: Text(
                     "Mobiles",
-                    style: TextStyle( fontSize: 13),
+                    style: TextStyle(fontSize: 13),
                   ),
                 ),
               ],
@@ -858,7 +880,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
             Column(
               children: <Widget>[
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     //Navigator.of(context).pushNamed(PETS_ITEM_LIST);
                     print('Routing to Pets item list');
                   },
@@ -879,7 +901,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
             Column(
               children: <Widget>[
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     //Navigator.of(context).pushNamed(FASHION_ITEM_LIST);
                     print('Routing to Fashion item list');
                   },
@@ -892,7 +914,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                 Flexible(
                   child: Text(
                     "Fashion",
-                    style: TextStyle( fontSize: 13),
+                    style: TextStyle(fontSize: 13),
                   ),
                 ),
               ],
@@ -900,7 +922,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
           ],
         ),
         crossFadeState:
-        isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+            isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
         duration: kThemeAnimationDuration,
       ),
     );
@@ -922,7 +944,8 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget _buildTrendingEntries(BuildContext context, int index, List<Product> listItem) {
+  Widget _buildTrendingEntries(
+      BuildContext context, int index, List<Product> listItem) {
     return GestureDetector(
       onTap: () {
         // Navigator.of(context).pushNamed(DETAIL_UI);
@@ -957,7 +980,8 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget _buildRecommendationsEntries(BuildContext context, int index, List<Product> listItem) {
+  Widget _buildRecommendationsEntries(
+      BuildContext context, int index, List<Product> listItem) {
     return GestureDetector(
       onTap: () {
         //Navigator.of(context).pushNamed(DETAIL_UI);
@@ -991,7 +1015,8 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget _buildDealsEntries(BuildContext context, int index, List<Product> listItem) {
+  Widget _buildDealsEntries(
+      BuildContext context, int index, List<Product> listItem) {
     return GestureDetector(
       onTap: () {
         //Navigator.of(context).pushNamed(DETAIL_UI);

@@ -20,7 +20,8 @@ class HotelListData {
   static List<HotelListData> hotelList = <HotelListData>[
     HotelListData(
       imagePath: 'assets/hotel/hotel_1.png',
-      titleTxt: 'Grand Royal Hotel Grand Royal Hotel Grand Royal Hotel Grand Royal Hotel',
+      titleTxt:
+          'Grand Royal Hotel Grand Royal Hotel Grand Royal Hotel Grand Royal Hotel',
       subTxt: 'Wembley, London',
       dist: 2.0,
       reviews: 80,
@@ -29,7 +30,8 @@ class HotelListData {
     ),
     HotelListData(
       imagePath: 'assets/hotel/hotel_2.png',
-      titleTxt: 'Queen Hotel Grand Royal Hotel Grand Royal Hotel Grand Royal Hotel Grand Royal Hotel',
+      titleTxt:
+          'Queen Hotel Grand Royal Hotel Grand Royal Hotel Grand Royal Hotel Grand Royal Hotel',
       subTxt: 'Wembley, London',
       dist: 4.0,
       reviews: 74,

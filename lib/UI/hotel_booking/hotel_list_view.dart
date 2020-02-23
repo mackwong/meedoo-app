@@ -3,19 +3,10 @@ import 'package:flutter/material.dart';
 import 'model/hotel_list_data.dart';
 
 class HotelListView extends StatelessWidget {
-  HotelListView({
-    Key key,
-    this.hotelData,
-    this.animationController,
-    this.animation,
-    this.callback
-
-  }) : super(key: key);
+  HotelListView({Key key, this.hotelData, this.callback}) : super(key: key);
 
   final VoidCallback callback;
   final HotelListData hotelData;
-  final AnimationController animationController;
-  final Animation<dynamic> animation;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +23,7 @@ class HotelListView extends StatelessWidget {
                 aspectRatio: 1.5,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5.0),
-                  child: Image.asset(hotelData.imagePath,fit: BoxFit.fill),
+                  child: Image.asset(hotelData.imagePath, fit: BoxFit.fill),
                 ),
               ),
             ),
@@ -93,29 +84,31 @@ class _ArticleDescription extends StatelessWidget {
                 ),
               ),
               Row(
-               children: <Widget>[
-                 Container(
-                   decoration: BoxDecoration(
-                     color: Colors.blue,
-                   ),
-                  child: Text(
-                    'test',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                    ),
+                    child: Text(
+                      'test',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
                     ),
                   ),
-                 ),
-                 SizedBox(width: 2,),
-                 Container(
-                   child: Text(
-                     'abc',
-                     style: const TextStyle(
-                       color: Colors.blue,
-                     ),
-                   ),
-                 ),
-               ],
+                  SizedBox(
+                    width: 2,
+                  ),
+                  Container(
+                    child: Text(
+                      'abc',
+                      style: const TextStyle(
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               Text(
                 '$price per month',

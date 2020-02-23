@@ -72,12 +72,15 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                 AspectRatio(
                   aspectRatio: 1.2,
                   child: Swiper(
-                    itemBuilder: (BuildContext context,int index){
-                      return new Image.asset("assets/hotel/hotel_2.png",fit: BoxFit.fill,);
+                    itemBuilder: (BuildContext context, int index) {
+                      return new Image.asset(
+                        "assets/hotel/hotel_2.png",
+                        fit: BoxFit.fill,
+                      );
                     },
-                  itemCount: 3,
-                  pagination: buildSwiperPagination(),
-                ),
+                    itemCount: 3,
+                    pagination: buildSwiperPagination(),
+                  ),
                 ),
               ],
             ),
@@ -203,7 +206,7 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   Container(
-                                    width: _width/2 - 40,
+                                    width: _width / 2 - 40,
                                     height: 48,
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -224,7 +227,7 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                                             fontSize: 18,
                                             letterSpacing: 0.0,
                                             color: DesignCourseAppTheme
-                                              .nearlyWhite,
+                                                .nearlyWhite,
                                           ),
                                         ),
                                       ),
@@ -234,7 +237,7 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                                     width: 16,
                                   ),
                                   Container(
-                                    width: _width/2 - 40,
+                                    width: _width / 2 - 40,
                                     height: 48,
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -284,7 +287,7 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius:
-                    BorderRadius.circular(AppBar().preferredSize.height),
+                        BorderRadius.circular(AppBar().preferredSize.height),
                     child: Icon(
                       Icons.arrow_back_ios,
                       color: DesignCourseAppTheme.nearlyBlack,

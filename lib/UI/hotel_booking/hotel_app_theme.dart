@@ -63,4 +63,3 @@ class HexColor extends Color {
     return int.parse(hexColor, radix: 16);
   }
 }
-

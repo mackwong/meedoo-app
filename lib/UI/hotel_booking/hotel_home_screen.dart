@@ -4,7 +4,6 @@ import 'package:flutter_classifiedappclone/UI/hotel_booking/hotel_list_view.dart
 import 'package:flutter_classifiedappclone/UI/hotel_booking/model/hotel_list_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_classifiedappclone/Constants/constants.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'filters_screen.dart';
 import 'hotel_app_theme.dart';
@@ -16,7 +15,6 @@ class HotelHomeScreen extends StatefulWidget {
 
 class _HotelHomeScreenState extends State<HotelHomeScreen>
     with TickerProviderStateMixin {
-  AnimationController animationController;
   List<HotelListData> hotelList = HotelListData.hotelList;
   final ScrollController _scrollController = ScrollController();
 
@@ -25,8 +23,6 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 
   @override
   void initState() {
-    animationController = AnimationController(
-        duration: const Duration(milliseconds: 1000), vsync: this);
     super.initState();
   }
 
@@ -37,7 +33,6 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 
   @override
   void dispose() {
-    animationController.dispose();
     super.dispose();
   }
 
@@ -93,21 +88,9 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                             padding: const EdgeInsets.only(top: 8),
                             scrollDirection: Axis.vertical,
                             itemBuilder: (BuildContext context, int index) {
-                              final int count =
-                                  hotelList.length > 10 ? 10 : hotelList.length;
-                              final Animation<double> animation =
-                                  Tween<double>(begin: 0.0, end: 1.0).animate(
-                                      CurvedAnimation(
-                                          parent: animationController,
-                                          curve: Interval(
-                                              (1 / count) * index, 1.0,
-                                              curve: Curves.fastOutSlowIn)));
-                              animationController.forward();
                               return HotelListView(
                                 callback: () {},
                                 hotelData: hotelList[index],
-                                animation: animation,
-                                animationController: animationController,
                               );
                             },
                           ),
@@ -151,19 +134,9 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                     itemBuilder: (BuildContext context, int index) {
                       final int count =
                           hotelList.length > 10 ? 10 : hotelList.length;
-                      final Animation<double> animation =
-                          Tween<double>(begin: 0.0, end: 1.0).animate(
-                              CurvedAnimation(
-                                  parent: animationController,
-                                  curve: Interval((1 / count) * index, 1.0,
-                                      curve: Curves.fastOutSlowIn)));
-                      animationController.forward();
-
                       return HotelListView(
                         callback: () {},
                         hotelData: hotelList[index],
-                        animation: animation,
-                        animationController: animationController,
                       );
                     },
                   );
@@ -180,23 +153,13 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
     final List<Widget> hotelListViews = <Widget>[];
     for (int i = 0; i < hotelList.length; i++) {
       final int count = hotelList.length;
-      final Animation<double> animation =
-          Tween<double>(begin: 0.0, end: 1.0).animate(
-        CurvedAnimation(
-          parent: animationController,
-          curve: Interval((1 / count) * i, 1.0, curve: Curves.fastOutSlowIn),
-        ),
-      );
       hotelListViews.add(
         HotelListView(
           callback: () {},
           hotelData: hotelList[i],
-          animation: animation,
-          animationController: animationController,
         ),
       );
     }
-    animationController.forward();
     return Column(
       children: hotelListViews,
     );
@@ -320,7 +283,6 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
     );
   }
 
-
   Widget getFilterBarUI() {
     return Stack(
       children: <Widget>[
@@ -439,7 +401,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
   }
 
   Widget getAppBarUI() {
-    var _height = AppBar().preferredSize.height/1.5;
+    var _height = AppBar().preferredSize.height / 1.5;
     return Container(
       decoration: BoxDecoration(
         color: HotelAppTheme.buildLightTheme().backgroundColor,
@@ -470,7 +432,10 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Icon(Icons.arrow_back_ios, size: _height/2,),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      size: _height / 2,
+                    ),
                   ),
                 ),
               ),
@@ -478,11 +443,11 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
             Expanded(
               child: Center(
                 child: Container(
-                  height: _height/1.5,
+                  height: _height / 1.5,
                   decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(10),
-                      color: DesignCourseAppTheme.notWhite,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(10),
+                    color: DesignCourseAppTheme.notWhite,
                   ),
                   child: TextFormField(
                     keyboardType: TextInputType.text,
@@ -491,7 +456,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                     ),
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(0),
-                      prefixIcon: Icon(Icons.search, size: _height/2),
+                      prefixIcon: Icon(Icons.search, size: _height / 2),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(32.0),
                         borderSide: BorderSide.none,
@@ -516,7 +481,10 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                       onTap: () {},
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.add_circle_outline,size: _height/2,),
+                        child: Icon(
+                          Icons.add_circle_outline,
+                          size: _height / 2,
+                        ),
                       ),
                     ),
                   ),
@@ -529,7 +497,10 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                       onTap: () {},
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.mail_outline,size: _height/2,),
+                        child: Icon(
+                          Icons.mail_outline,
+                          size: _height / 2,
+                        ),
                       ),
                     ),
                   ),
