@@ -70,7 +70,7 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
             Column(
               children: <Widget>[
                 AspectRatio(
-                  aspectRatio: 1.2,
+                  aspectRatio: 1.4,
                   child: Swiper(
                     itemBuilder: (BuildContext context, int index) {
                       return new Image.asset(
@@ -85,7 +85,7 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
               ],
             ),
             Positioned(
-              top: (_width / 1.2) - 25.0,
+              top: _width / 1.4 - 20,
               bottom: 0,
               left: 0,
               right: 0,
@@ -93,8 +93,8 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                 decoration: BoxDecoration(
                   color: DesignCourseAppTheme.nearlyWhite,
                   borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(32.0),
-                      topRight: Radius.circular(32.0)),
+                      topLeft: Radius.circular(20.0),
+                      topRight: Radius.circular(20.0)),
                   boxShadow: <BoxShadow>[
                     BoxShadow(
                         color: DesignCourseAppTheme.grey.withOpacity(0.2),

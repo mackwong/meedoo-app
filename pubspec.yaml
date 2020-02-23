@@ -48,6 +48,10 @@ flutter:
   assets:
     - assets/images/house.png
     - assets/images/sofa.png
+    - assets/images/gps.png
+    - assets/images/moving-truck.png
+    - assets/images/real-estate.png
+    - assets/images/building.png
     - assets/images/gadget.png
     - assets/images/bike.png
     - assets/images/pet.png

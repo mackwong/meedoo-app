@@ -257,6 +257,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                   ],
                 ),
               ),
+              Divider(),
               trendingProducts(),
               Divider(
                 thickness: 10,
@@ -276,7 +277,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                 ),
               ),
               Container(
-                height: 300.0,
+                height: 500,
                 child: new TabBarView(
                   controller: _controller,
                   children: <Widget>[
@@ -292,19 +293,22 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                         );
                       },
                     ),
-                    new Card(
-                      child: new ListTile(
-                        leading: const Icon(Icons.location_on),
-                        title:
-                            new Text('Latitude: 48.09342\nLongitude: 11.23403'),
-                        trailing: new IconButton(
-                            icon: const Icon(Icons.my_location),
-                            onPressed: () {}),
-                      ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: hotelList.length,
+                      padding: const EdgeInsets.only(top: 8),
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (BuildContext context, int index) {
+                        return HotelListView(
+                          callback: () {},
+                          hotelData: hotelList[index],
+                        );
+                      },
                     ),
                   ],
                 ),
               ),
+              Divider(),
             ],
           ),
         ),
@@ -566,27 +570,6 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
             Column(
               children: <Widget>[
                 GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed(HOUSE_SCREEN);
-                    print('Routing to Electronics item list');
-                  },
-                  child: Image.asset(
-                    'assets/images/gadget.png',
-                    height: _height / 12,
-                    width: _width / 12,
-                  ),
-                ),
-                Flexible(
-                  child: Text(
-                    "Electronics",
-                    style: TextStyle(fontSize: 13),
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              children: <Widget>[
-                GestureDetector(
                     onTap: () {
                       Navigator.of(context).pushNamed(HOUSE_DETAIL);
                       print('Routing to Properties item list');
@@ -607,18 +590,39 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
             Column(
               children: <Widget>[
                 GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(HOUSE_SCREEN);
+                    print('Routing to Electronics item list');
+                  },
+                  child: Image.asset(
+                    'assets/images/building.png',
+                    height: _height / 12,
+                    width: _width / 12,
+                  ),
+                ),
+                Flexible(
+                  child: Text(
+                    "Shared Housing",
+                    style: TextStyle(fontSize: 13),
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              children: <Widget>[
+                GestureDetector(
                     onTap: () {
                       //Navigator.of(context).pushNamed(JOBS_ITEM_LIST);
                       print('Routing to Jobs item list');
                     },
                     child: Image.asset(
-                      'assets/images/job.png',
+                      'assets/images/real-estate.png',
                       height: _height / 12,
                       width: _width / 12,
                     )),
                 Flexible(
                   child: Text(
-                    "Jobs",
+                    "Real Estate",
                     style: TextStyle(fontSize: 13),
                   ),
                 ),
@@ -652,14 +656,14 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                     print('Routing to Cars item list');
                   },
                   child: Image.asset(
-                    'assets/images/car.png',
+                    'assets/images/moving-truck.png',
                     height: _height / 12,
                     width: _width / 12,
                   ),
                 ),
                 Flexible(
                   child: Text(
-                    "Cars",
+                    "Moving House",
                     style: TextStyle(fontSize: 13),
                   ),
                 ),
@@ -673,55 +677,14 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                     print('Routing to Bikes item list');
                   },
                   child: Image.asset(
-                    'assets/images/bike.png',
+                    'assets/images/gps.png',
                     height: _height / 12,
                     width: _width / 12,
                   ),
                 ),
                 Flexible(
                   child: Text(
-                    "Bikes",
-                    style: TextStyle(fontSize: 13),
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              children: <Widget>[
-                GestureDetector(
-                    onTap: () {
-                      //Navigator.of(context).pushNamed(MOBILES_ITEM_LIST);
-                      print('Routing to Mobiles item list');
-                    },
-                    child: Image.asset(
-                      'assets/images/smartphone.png',
-                      height: _height / 12,
-                      width: _width / 12,
-                    )),
-                Flexible(
-                  child: Text(
-                    "Mobiles",
-                    style: TextStyle(fontSize: 13),
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    //Navigator.of(context).pushNamed(PETS_ITEM_LIST);
-                    print('Routing to Pets item list');
-                  },
-                  child: Image.asset(
-                    'assets/images/pet.png',
-                    height: _height / 12,
-                    width: _width / 12,
-                  ),
-                ),
-                Flexible(
-                  child: Text(
-                    "Pets",
+                    "Seek In Map",
                     style: TextStyle(fontSize: 13),
                   ),
                 ),
