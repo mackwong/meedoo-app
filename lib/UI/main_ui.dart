@@ -12,7 +12,7 @@ class MainUI extends StatefulWidget {
   _MainUIState createState() => _MainUIState();
 }
 
-class _MainUIState extends State<MainUI> {
+class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
 
@@ -21,6 +21,7 @@ class _MainUIState extends State<MainUI> {
   List<Product> trendingListItems;
   List<Product> recommendListItems;
   List<Product> dealsListItems;
+  TabController _controller;
   double _height;
   double _width;
   @override
@@ -198,6 +199,7 @@ class _MainUIState extends State<MainUI> {
           "assets/images/sofa.jpg",
           true),
     ];
+    _controller = new TabController(length: 2, vsync: this);
 //    categoryItems = [
 //      Category("Electronics", "assets/images/gadget.png"),
 //      Category("Properties", "assets/images/house.png"),
@@ -241,7 +243,6 @@ class _MainUIState extends State<MainUI> {
             children: <Widget>[
               clipShape(),
               expandList(),
-              Divider(),
               Container(
                 margin: EdgeInsets.only(left: 30, right: 30, top: 10),
                 child: Row(
@@ -265,54 +266,46 @@ class _MainUIState extends State<MainUI> {
                 ),
               ),
               trendingProducts(),
-              Divider(),
+              Divider(
+                thickness: 10,
+              ),
               Container(
                 margin: EdgeInsets.only(left: 30, right: 30, top: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text("Recommendations",
-                        style: TextStyle(
-                             fontSize: 16)),
-                    GestureDetector(
-                        onTap: () {
-                          //Navigator.of(context).pushNamed(RECOMMEND_UI);
-                          print('Showing all');
-                        },
-                        child: Text(
-                          'Show all',
-                          style: TextStyle(
-                              color: DesignCourseAppTheme.orangeText,
-                             ),
-                        ))
+                child: new TabBar(
+                  controller: _controller,
+                  tabs: [
+                    new Tab(
+                      text: 'Recommendation',
+                    ),
+                    new Tab(
+                      text: 'Nearby',
+                    ),
                   ],
                 ),
               ),
-              recommendations(),
-              Divider(),
               Container(
-                margin: EdgeInsets.only(left: 30, right: 30, top: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                height: 80.0,
+                child: new TabBarView(
+                  controller: _controller,
                   children: <Widget>[
-                    Text("Today's Deals",
-                        style: TextStyle(
-                             fontSize: 16)),
-                    GestureDetector(
-                        onTap: () {
-                          //Navigator.of(context).pushNamed(DEALS_UI);
-                          print('Showing all');
-                        },
-                        child: Text(
-                          'Show all',
-                          style: TextStyle(
-                              color: DesignCourseAppTheme.orangeText,
-                              ),
-                        ))
+                    new Card(
+                      child: new ListTile(
+                        leading: const Icon(Icons.home),
+                        title: new TextField(
+                          decoration: const InputDecoration(hintText: 'Search for address...'),
+                        ),
+                      ),
+                    ),
+                    new Card(
+                      child: new ListTile(
+                        leading: const Icon(Icons.location_on),
+                        title: new Text('Latitude: 48.09342\nLongitude: 11.23403'),
+                        trailing: new IconButton(icon: const Icon(Icons.my_location), onPressed: () {}),
+                      ),
+                    ),
                   ],
                 ),
               ),
-              todaysDeals(),
             ],
           ),
         ),

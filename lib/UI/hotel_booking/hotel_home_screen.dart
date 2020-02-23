@@ -439,6 +439,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
   }
 
   Widget getAppBarUI() {
+    var _height = AppBar().preferredSize.height/1.5;
     return Container(
       decoration: BoxDecoration(
         color: HotelAppTheme.buildLightTheme().backgroundColor,
@@ -456,8 +457,8 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
           children: <Widget>[
             Container(
               alignment: Alignment.centerLeft,
-              width: AppBar().preferredSize.height + 10,
-              height: AppBar().preferredSize.height,
+              width: _height,
+              height: _height,
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(
@@ -469,7 +470,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Icon(Icons.arrow_back_ios),
+                    child: Icon(Icons.arrow_back_ios, size: _height/2,),
                   ),
                 ),
               ),
@@ -477,17 +478,20 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
             Expanded(
               child: Center(
                 child: Container(
+                  height: _height/1.5,
                   decoration: BoxDecoration(
                       shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(32),
+                      borderRadius: BorderRadius.circular(10),
                       color: DesignCourseAppTheme.notWhite,
                   ),
                   child: TextFormField(
                     keyboardType: TextInputType.text,
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(5),
-                      prefixIcon: Icon(Icons.search, size: 20),
-                      hintText: "Search...",
+                      contentPadding: EdgeInsets.all(0),
+                      prefixIcon: Icon(Icons.search, size: _height/2),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(32.0),
                         borderSide: BorderSide.none,
@@ -498,8 +502,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
               ),
             ),
             Container(
-              width: AppBar().preferredSize.height + 40,
-              height: AppBar().preferredSize.height,
+              height: _height,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -513,7 +516,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                       onTap: () {},
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.favorite_border),
+                        child: Icon(Icons.add_circle_outline,size: _height/2,),
                       ),
                     ),
                   ),
@@ -526,7 +529,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                       onTap: () {},
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(FontAwesomeIcons.mapMarkerAlt),
+                        child: Icon(Icons.mail_outline,size: _height/2,),
                       ),
                     ),
                   ),

@@ -1,7 +1,4 @@
-import 'package:flutter_classifiedappclone/UI/hotel_booking/hotel_app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 import 'model/hotel_list_data.dart';
 
@@ -25,7 +22,7 @@ class HotelListView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: SizedBox(
-        height: 80,
+        height: 75,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -33,12 +30,15 @@ class HotelListView extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(20.0, 0.0, 2.0, 0.0),
               child: AspectRatio(
                 aspectRatio: 1.5,
-                child: Image.asset(hotelData.imagePath,fit: BoxFit.fill),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5.0),
+                  child: Image.asset(hotelData.imagePath,fit: BoxFit.fill),
+                ),
               ),
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 0.0, 2.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(10.0, 0.0, 2.0, 0.0),
                 child: _ArticleDescription(
                   title: hotelData.titleTxt,
                   subtitle: hotelData.subTxt,
@@ -71,9 +71,10 @@ class _ArticleDescription extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Expanded(
-          flex: 2,
+          flex: 20,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
                 title,
@@ -91,21 +92,31 @@ class _ArticleDescription extends StatelessWidget {
                   color: Colors.black54,
                 ),
               ),
-              Text(
-                '$price',
-                style: const TextStyle(
-                  color: Colors.orange,
-                ),
+              Row(
+               children: <Widget>[
+                 Container(
+                   decoration: BoxDecoration(
+                     color: Colors.blue,
+                   ),
+                  child: Text(
+                    'test',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                    ),
+                  ),
+                 ),
+                 SizedBox(width: 2,),
+                 Container(
+                   child: Text(
+                     'abc',
+                     style: const TextStyle(
+                       color: Colors.blue,
+                     ),
+                   ),
+                 ),
+               ],
               ),
-            ],
-          ),
-        ),
-        Expanded(
-          flex: 0,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
               Text(
                 '$price per month',
                 style: const TextStyle(
