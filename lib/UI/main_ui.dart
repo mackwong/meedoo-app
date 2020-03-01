@@ -218,16 +218,22 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
       bottomNavigationBar: _bottomNavBar(),
       key: scaffoldKey,
       drawer: _drawer(),
-      floatingActionButton: FloatingActionButton.extended(
-        elevation: 2,
-        onPressed: () {},
-        backgroundColor: DesignCourseAppTheme.orange,
-        icon: Icon(Icons.add_circle),
-        label: Text(
-          "Post",
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
+      floatingActionButton: new Builder(
+        builder: (BuildContext context) {
+          return new FloatingActionButton(
+            child: const Icon(Icons.add),
+            tooltip: "Post",
+            foregroundColor: Colors.white,
+            backgroundColor: DesignCourseAppTheme.orange,
+            heroTag: null,
+            elevation: 2.0,
+            highlightElevation: 14.0,
+            onPressed: () {},
+            mini: false,
+            shape: new CircleBorder(),
+            isExtended: false,
+          );
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Container(
@@ -348,10 +354,6 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                   "mail@mack.wang",
                   style: TextStyle(fontSize: 13),
                 ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.black,
-                ),
               ),
             ),
           ),
@@ -371,33 +373,29 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
             leading: Icon(Icons.help),
             title: Text("FeedBack"),
           ),
+          Expanded(
+            child: SizedBox(),
+          ),
           Divider(
-            height: 5,
+            height: 1,
             color: Colors.grey,
           ),
-          Column(
-            children: <Widget>[
-              ListTile(
-                title: Text(
-                  'Sign Out',
-                  style: TextStyle(
-                    fontFamily: 'WorkSans',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                    color: Colors.black,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-                trailing: Icon(
-                  Icons.power_settings_new,
-                  color: Colors.red,
-                ),
-                onTap: () {},
+          ListTile(
+            title: Text(
+              'Sign Out',
+              style: TextStyle(
+                fontFamily: 'WorkSans',
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+                color: Colors.black,
               ),
-              SizedBox(
-                height: MediaQuery.of(context).padding.bottom,
-              )
-            ],
+              textAlign: TextAlign.left,
+            ),
+            trailing: Icon(
+              Icons.power_settings_new,
+              color: Colors.red,
+            ),
+            onTap: () {},
           ),
         ],
       ),
@@ -408,11 +406,11 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
     return BottomAppBar(
       notchMargin: 4,
       shape: AutomaticNotchedShape(RoundedRectangleBorder(),
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
       child: Container(
         margin: EdgeInsets.only(left: 50, right: 50),
         decoration: BoxDecoration(
-            shape: BoxShape.rectangle, borderRadius: BorderRadius.circular(30)),
+            shape: BoxShape.rectangle, borderRadius: BorderRadius.circular(50)),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -602,7 +600,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
                 ),
                 Flexible(
                   child: Text(
-                    "Shared Housing",
+                    "Apartment",
                     style: TextStyle(fontSize: 13),
                   ),
                 ),

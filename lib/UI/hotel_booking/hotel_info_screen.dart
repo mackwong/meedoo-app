@@ -15,6 +15,7 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
   double opacity1 = 0.0;
   double opacity2 = 0.0;
   double opacity3 = 0.0;
+
   @override
   void initState() {
     animationController = AnimationController(
@@ -103,7 +104,7 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                   ],
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 8),
+                  padding: const EdgeInsets.only(left: 25, right: 25),
                   child: SingleChildScrollView(
                     child: Container(
                       constraints: BoxConstraints(
@@ -116,22 +117,7 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(
-                                top: 32.0, left: 18, right: 16),
-                            child: Text(
-                              'So Beautiful House',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 22,
-                                letterSpacing: 0.27,
-                                color: DesignCourseAppTheme.darkerText,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 16, right: 16, bottom: 8, top: 16),
+                            padding: const EdgeInsets.only(bottom: 8, top: 16),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -140,7 +126,7 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                                   '\$28.99',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
-                                    fontWeight: FontWeight.w200,
+                                    fontWeight: FontWeight.w600,
                                     fontSize: 22,
                                     letterSpacing: 0.27,
                                     color: DesignCourseAppTheme.orangeText,
@@ -159,54 +145,80 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                               ],
                             ),
                           ),
-                          AnimatedOpacity(
-                            duration: const Duration(milliseconds: 500),
-                            opacity: opacity1,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: Row(
-                                children: <Widget>[
-                                  getTimeBoxUI('24', 'Classe'),
-                                  getTimeBoxUI('2hours', 'Time'),
-                                  getTimeBoxUI('24', 'Seat'),
-                                ],
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              'So Beautiful House',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 20,
+                                letterSpacing: 0.27,
+                                color: DesignCourseAppTheme.darkerText,
+                              ),
+                            ),
+                          ),
+                          Divider(),
+                          Row(
+                            children: <Widget>[
+                              getTimeBoxUI('24', 'Classe'),
+                              getTimeBoxUI('2hours', 'Time'),
+                              getTimeBoxUI('24', 'Seat'),
+                            ],
+                          ),
+                          Divider(),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0, bottom: 8),
+                            child: Text(
+                              'Detail',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                                letterSpacing: 0.27,
+                                color: DesignCourseAppTheme.darkerText,
                               ),
                             ),
                           ),
                           Expanded(
-                            child: AnimatedOpacity(
-                              duration: const Duration(milliseconds: 500),
-                              opacity: opacity2,
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 16, right: 16, top: 8, bottom: 8),
-                                child: Text(
-                                  'Lorem ipsum is simply dummy text of printing & typesetting industry, Lorem ipsum is simply dummy text of printing & typesetting industry.',
-                                  textAlign: TextAlign.justify,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 14,
-                                    letterSpacing: 0.27,
-                                    color: DesignCourseAppTheme.grey,
-                                  ),
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8),
+                              child: Text(
+                                'Lorem ipsum is simply  dummy text of printing & typesetting industry, Lorem i dummy text of printing & typesetting industry, Lorem idummy text of printing & typesetting industry, Lorem ipsum is simply dummy text of printing & typesetting industry.',
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w200,
+                                  fontSize: 14,
+                                  letterSpacing: 0.27,
+                                  color: DesignCourseAppTheme.grey,
                                 ),
+                                maxLines: 30,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ),
-                          AnimatedOpacity(
-                            duration: const Duration(milliseconds: 500),
-                            opacity: opacity3,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 16, bottom: 16, right: 16),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Container(
-                                    width: _width / 2 - 40,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0, bottom: 8),
+                            child: Text(
+                              'Nearby',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                                letterSpacing: 0.27,
+                                color: DesignCourseAppTheme.darkerText,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(
                                     height: 48,
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -233,15 +245,17 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 16,
-                                  ),
-                                  Container(
-                                    width: _width / 2 - 40,
+                                ),
+                                const SizedBox(
+                                  width: 32,
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(
                                     height: 48,
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: DesignCourseAppTheme.orangeText,
+                                        color: DesignCourseAppTheme.pink,
                                         borderRadius: const BorderRadius.all(
                                           Radius.circular(4.0),
                                         ),
@@ -264,13 +278,10 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
-                          SizedBox(
-                            height: MediaQuery.of(context).padding.bottom,
-                          )
                         ],
                       ),
                     ),
@@ -307,48 +318,32 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
 
   Widget getTimeBoxUI(String text1, String txt2) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: DesignCourseAppTheme.nearlyWhite,
-          borderRadius: const BorderRadius.all(Radius.circular(2.0)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: DesignCourseAppTheme.grey.withOpacity(0.2),
-                offset: const Offset(0.1, 0.1),
-                blurRadius: 1.0),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(
-              left: 18.0, right: 18.0, top: 12.0, bottom: 12.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                text1,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
-                  letterSpacing: 0.27,
-                  color: DesignCourseAppTheme.nearlyBlack,
-                ),
-              ),
-              Text(
-                txt2,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.w200,
-                  fontSize: 14,
-                  letterSpacing: 0.27,
-                  color: DesignCourseAppTheme.grey,
-                ),
-              ),
-            ],
+      padding: const EdgeInsets.only(right: 18.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            text1,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+              letterSpacing: 0.27,
+              color: DesignCourseAppTheme.nearlyBlack,
+            ),
           ),
-        ),
+          Text(
+            txt2,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.w200,
+              fontSize: 14,
+              letterSpacing: 0.27,
+              color: DesignCourseAppTheme.grey,
+            ),
+          ),
+        ],
       ),
     );
   }
