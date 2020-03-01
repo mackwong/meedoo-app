@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_classifiedappclone/Constants/constants.dart';
 import 'package:flutter_classifiedappclone/UI/Widgets/splash_screen.dart';
 import 'package:flutter_classifiedappclone/UI/main_ui.dart';
+import 'package:flutter_classifiedappclone/UI/map.dart';
 import 'package:flutter_classifiedappclone/UI/hotel_booking/hotel_home_screen.dart';
 import 'package:flutter_classifiedappclone/UI/hotel_booking/hotel_info_screen.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primaryColor: DesignCourseAppTheme.orange),
       routes: <String, WidgetBuilder>{
         MAIN_UI: (BuildContext context) => MainUI(),
+        GOOGLE_MAP: (BuildContext context) => Google(),
         SPLASH_SCREEN: (BuildContext context) => AnimatedSplashScreen(),
         HOUSE_SCREEN: (BuildContext context) => HotelHomeScreen(),
         HOUSE_DETAIL: (BuildContext context) => HouseInfoScreen(),

@@ -384,7 +384,6 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
             title: Text(
               'Sign Out',
               style: TextStyle(
-                fontFamily: 'WorkSans',
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
                 color: Colors.black,
@@ -671,7 +670,7 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
               children: <Widget>[
                 GestureDetector(
                   onTap: () {
-                    //Navigator.of(context).pushNamed(BIKES_ITEM_LIST);
+                    Navigator.of(context).pushNamed(GOOGLE_MAP);
                     print('Routing to Bikes item list');
                   },
                   child: Image.asset(
@@ -942,41 +941,6 @@ class _MainUIState extends State<MainUI> with SingleTickerProviderStateMixin {
   }
 
   Widget _buildRecommendationsEntries(
-      BuildContext context, int index, List<Product> listItem) {
-    return GestureDetector(
-      onTap: () {
-        //Navigator.of(context).pushNamed(DETAIL_UI);
-        print("Routing to detail page");
-      },
-      child: CustomCard(
-        title: '${listItem[index].title}',
-        category: '${listItem[index].category}',
-        price: "₹${listItem[index].price}",
-        dateAdded: "${listItem[index].dateAdded}",
-        description: "${listItem[index].desc}",
-        image: "${listItem[index].image}",
-        location: "Sector 62, Noida",
-      ),
-    );
-  }
-
-  Widget todaysDeals() {
-    return Container(
-      height: _height / 4.25,
-      //width: MediaQuery.of(context).size.width,
-      child: ListView.builder(
-        padding: EdgeInsets.all(5),
-        shrinkWrap: true,
-        itemCount: dealsListItems.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (BuildContext context, index) {
-          return _buildDealsEntries(context, index, dealsListItems);
-        },
-      ),
-    );
-  }
-
-  Widget _buildDealsEntries(
       BuildContext context, int index, List<Product> listItem) {
     return GestureDetector(
       onTap: () {

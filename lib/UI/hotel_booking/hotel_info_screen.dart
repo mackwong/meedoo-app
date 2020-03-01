@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_classifiedappclone/Constants/constants.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HouseInfoScreen extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
   double opacity1 = 0.0;
   double opacity2 = 0.0;
   double opacity3 = 0.0;
+  GoogleMapController mapController;
 
   @override
   void initState() {
@@ -56,269 +58,192 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
     );
   }
 
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
   @override
   Widget build(BuildContext context) {
     final double tempHeight = MediaQuery.of(context).size.height -
         (MediaQuery.of(context).size.width / 1.2) +
         24.0;
     final double _width = MediaQuery.of(context).size.width;
-    return Container(
-      color: DesignCourseAppTheme.nearlyWhite,
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                AspectRatio(
-                  aspectRatio: 1.4,
-                  child: Swiper(
-                    itemBuilder: (BuildContext context, int index) {
-                      return new Image.asset(
-                        "assets/hotel/hotel_2.png",
-                        fit: BoxFit.fill,
-                      );
-                    },
-                    itemCount: 3,
-                    pagination: buildSwiperPagination(),
-                  ),
+    return Scaffold(
+      bottomNavigationBar: _bottomNavBar(),
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              AspectRatio(
+                aspectRatio: 1.4,
+                child: Swiper(
+                  itemBuilder: (BuildContext context, int index) {
+                    return new Image.asset(
+                      "assets/hotel/hotel_2.png",
+                      fit: BoxFit.fill,
+                    );
+                  },
+                  itemCount: 3,
+                  pagination: buildSwiperPagination(),
                 ),
-              ],
-            ),
-            Positioned(
-              top: _width / 1.4 - 20,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: DesignCourseAppTheme.nearlyWhite,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20.0),
-                      topRight: Radius.circular(20.0)),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                        color: DesignCourseAppTheme.grey.withOpacity(0.2),
-                        offset: const Offset(1.1, 1.1),
-                        blurRadius: 10.0),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 25, right: 25),
-                  child: SingleChildScrollView(
-                    child: Container(
-                      constraints: BoxConstraints(
-                          minHeight: infoHeight,
-                          maxHeight: tempHeight > infoHeight
-                              ? tempHeight
-                              : infoHeight),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8, top: 16),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  '\$28.99',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 22,
-                                    letterSpacing: 0.27,
-                                    color: DesignCourseAppTheme.orangeText,
-                                  ),
-                                ),
-                                Container(
-                                  child: Row(
-                                    children: <Widget>[
-                                      Icon(
-                                        Icons.favorite_border,
-                                        size: 24,
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
+              ),
+            ],
+          ),
+          Positioned(
+            top: _width / 1.4 - 20,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              decoration: BoxDecoration(
+                color: DesignCourseAppTheme.nearlyWhite,
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10.0),
+                    topRight: Radius.circular(10.0)),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: DesignCourseAppTheme.grey.withOpacity(0.2),
+                      offset: const Offset(1.1, 1.1),
+                      blurRadius: 10.0),
+                ],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 25, right: 25),
+                child: SingleChildScrollView(
+                  child: Container(
+                    constraints: BoxConstraints(
+                        minHeight: infoHeight,
+                        maxHeight:
+                            tempHeight > infoHeight ? tempHeight : infoHeight),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8, top: 16),
+                          child: Text(
+                            '\$28.99',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 22,
+                              letterSpacing: 0.27,
+                              color: DesignCourseAppTheme.red,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            'So Beautiful House',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                              letterSpacing: 0.27,
+                              color: DesignCourseAppTheme.darkerText,
+                            ),
+                          ),
+                        ),
+                        Divider(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            getTimeBoxUI('24', 'Classe'),
+                            getTimeBoxUI('2hours', 'Time'),
+                            getTimeBoxUI('24', 'Seat'),
+                          ],
+                        ),
+                        Divider(),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 8),
+                          child: Text(
+                            'Detail',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                              letterSpacing: 0.27,
+                              color: DesignCourseAppTheme.darkerText,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8),
                             child: Text(
-                              'So Beautiful House',
-                              textAlign: TextAlign.left,
+                              'Lorem ipsum is simply  dummy text of printing & typesetting industry, Lorem i dummy text of printing & typesetting industry, Lorem idummy text of printing & typesetting industry, Lorem ipsum is simply dummy text of printing & typesetting industry.',
+                              textAlign: TextAlign.justify,
                               style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 20,
+                                fontWeight: FontWeight.w200,
+                                fontSize: 14,
                                 letterSpacing: 0.27,
-                                color: DesignCourseAppTheme.darkerText,
+                                color: DesignCourseAppTheme.grey,
                               ),
+                              maxLines: 30,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Divider(),
-                          Row(
-                            children: <Widget>[
-                              getTimeBoxUI('24', 'Classe'),
-                              getTimeBoxUI('2hours', 'Time'),
-                              getTimeBoxUI('24', 'Seat'),
-                            ],
-                          ),
-                          Divider(),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0, bottom: 8),
-                            child: Text(
-                              'Detail',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15,
-                                letterSpacing: 0.27,
-                                color: DesignCourseAppTheme.darkerText,
-                              ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20.0, bottom: 8),
+                          child: Text(
+                            'Nearby',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                              letterSpacing: 0.27,
+                              color: DesignCourseAppTheme.darkerText,
                             ),
                           ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 8),
-                              child: Text(
-                                'Lorem ipsum is simply  dummy text of printing & typesetting industry, Lorem i dummy text of printing & typesetting industry, Lorem idummy text of printing & typesetting industry, Lorem ipsum is simply dummy text of printing & typesetting industry.',
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w200,
-                                  fontSize: 14,
-                                  letterSpacing: 0.27,
-                                  color: DesignCourseAppTheme.grey,
-                                ),
-                                maxLines: 30,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                        ),
+                        AspectRatio(
+                          aspectRatio: 1.8,
+                          child: GoogleMap(
+                            onMapCreated: _onMapCreated,
+                            initialCameraPosition: CameraPosition(
+                              target: const LatLng(45.521563, -122.677433),
+                              zoom: 11.0,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0, bottom: 8),
-                            child: Text(
-                              'Nearby',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15,
-                                letterSpacing: 0.27,
-                                color: DesignCourseAppTheme.darkerText,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 16),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    height: 48,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: DesignCourseAppTheme.orangeText,
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(4.0),
-                                        ),
-                                        border: Border.all(
-                                            color: DesignCourseAppTheme.grey
-                                                .withOpacity(0.2)),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Booking Room',
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18,
-                                            letterSpacing: 0.0,
-                                            color: DesignCourseAppTheme
-                                                .nearlyWhite,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 32,
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    height: 48,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: DesignCourseAppTheme.pink,
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(4.0),
-                                        ),
-                                        border: Border.all(
-                                            color: DesignCourseAppTheme.grey
-                                                .withOpacity(0.2)),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Call Me',
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18,
-                                            letterSpacing: 0.0,
-                                            color: DesignCourseAppTheme
-                                                .nearlyWhite,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-              child: SizedBox(
-                width: AppBar().preferredSize.height,
-                height: AppBar().preferredSize.height,
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius:
-                        BorderRadius.circular(AppBar().preferredSize.height),
-                    child: Icon(
-                      Icons.arrow_back_ios,
-                      color: DesignCourseAppTheme.nearlyBlack,
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+            child: SizedBox(
+              width: AppBar().preferredSize.height,
+              height: AppBar().preferredSize.height,
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius:
+                      BorderRadius.circular(AppBar().preferredSize.height),
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    color: DesignCourseAppTheme.nearlyBlack,
                   ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
 
   Widget getTimeBoxUI(String text1, String txt2) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 18.0),
+    return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -344,6 +269,46 @@ class _HouseInfoScreenState extends State<HouseInfoScreen>
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _bottomNavBar() {
+    return BottomAppBar(
+      child: Container(
+        margin: EdgeInsets.only(left: 20, right: 20),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            SizedBox(
+              width: 50,
+              child: IconButton(
+                icon: Icon(Icons.favorite_border),
+                onPressed: () {},
+              ),
+            ),
+            Expanded(
+              flex: 4,
+              child: ButtonBar(
+                alignment: MainAxisAlignment.spaceBetween,
+                buttonMinWidth:
+                    (MediaQuery.of(context).size.width - 80 - 40) / 2,
+                children: <Widget>[
+                  new RaisedButton(
+                    color: DesignCourseAppTheme.blue,
+                    child: new Text('Booking'),
+                    onPressed: (){},
+                  ),
+                  new RaisedButton(
+                    color: DesignCourseAppTheme.red,
+                    child: new Text('Call'),
+                    onPressed: (){},
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

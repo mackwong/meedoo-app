@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:flutter_classifiedappclone/UI/hotel_booking/calendar_popup_view.dart';
 import 'package:flutter_classifiedappclone/UI/hotel_booking/hotel_list_view.dart';
 import 'package:flutter_classifiedappclone/UI/hotel_booking/model/hotel_list_data.dart';
 import 'package:flutter/material.dart';
@@ -188,7 +187,6 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                       // setState(() {
                       //   isDatePopupOpen = true;
                       // });
-                      showDemoDialog(context: context);
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(
@@ -375,28 +373,6 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
           ),
         )
       ],
-    );
-  }
-
-  void showDemoDialog({BuildContext context}) {
-    showDialog<dynamic>(
-      context: context,
-      builder: (BuildContext context) => CalendarPopupView(
-        barrierDismissible: true,
-        minimumDate: DateTime.now(),
-        //  maximumDate: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 10),
-        initialEndDate: endDate,
-        initialStartDate: startDate,
-        onApplyClick: (DateTime startData, DateTime endData) {
-          setState(() {
-            if (startData != null && endData != null) {
-              startDate = startData;
-              endDate = endData;
-            }
-          });
-        },
-        onCancelClick: () {},
-      ),
     );
   }
 

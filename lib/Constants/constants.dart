@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 final String MAIN_UI = "main_ui";
+final String GOOGLE_MAP = "google_map";
 final String SPLASH_SCREEN = "splash_screen";
 final String HOUSE_SCREEN = "house_screen";
 final String HOUSE_DETAIL = "house_detail";
@@ -9,9 +10,11 @@ class DesignCourseAppTheme {
   DesignCourseAppTheme._();
 
   static const Color orange = Color(0xFFFFCC80);
-  static const Color orangeText = Color(0xFFFF4040);
+  static const Color orangeText = Color(0xFFFAA732);
   static const Color pink = Color(0xFFFF4081);
-  static const Color red = Color(0xFFFF0000);
+  static const Color red = Color(0xFFDA4F49);
+  static const Color green = Color(0xFF5BB75B);
+  static const Color blue = Color(0xFF006DCC);
 
   static const Color notWhite = Color(0xFFEDF0F2);
   static const Color nearlyWhite = Color(0xFFFFFFFF);
